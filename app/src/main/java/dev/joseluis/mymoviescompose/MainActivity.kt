@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -51,15 +53,19 @@ fun DefaultPreview() {
 
 @Composable
 fun MyMainScreen() {
-    // Box es un composable que permite definir un contenedor de elementos
-    Box(modifier = Modifier
+    // Column es un composable que permite definir un layout vertical
+    Column(modifier = Modifier
         .fillMaxSize()
         .background(Color.LightGray),
-        contentAlignment = Alignment.Center
+        horizontalAlignment = Alignment.CenterHorizontally, // horizontalAlignment es un parámetro que permite definir la alineación horizontal de los elementos
+        verticalArrangement = Arrangement.SpaceEvenly // verticalArrangement es un parámetro que permite definir la distribución de los elementos
     ) {
         Greeting(name = "Pepe", modifier = Modifier.background(Color.Blue))
         Greeting(name = "Compose",
-            modifier = Modifier.background(Color.Red).align(Alignment.BottomCenter)
+            modifier = Modifier.background(Color.Red).weight(1f)
+        )
+        Greeting(name = "Jose",
+            modifier = Modifier.background(Color.Green).weight(2f)
         )
     }
 

@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import dev.joseluis.mymoviescompose.ui.theme.MyMoviesComposeTheme
 
 // Clase principal de la app --> Actividad
@@ -69,9 +70,11 @@ fun MediaItem() {
             modifier = Modifier
                 .height(200.dp)
                 .fillMaxWidth()
-                .background(Color.Red)
+                .background(Color.LightGray)
         ) {
             // Aquí irán las dos images
+            // Imagen con Coil
+            AsyncImage(model = "https://loremflickr.com/400/400/cat?lock=1" , contentDescription = "Image 1")
         }
         Box(
             contentAlignment = Alignment.Center,

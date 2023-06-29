@@ -12,12 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import dev.joseluis.mymoviescompose.ui.theme.MyMoviesComposeTheme
 
+// Clase principal de la app --> Actividad
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // setContent es un composable que permite definir el contenido de la actividad
         setContent {
+            // MyMoviesComposeTheme es un composable que permite definir los colores, tipografía y formas de la app
             MyMoviesComposeTheme {
-                // A surface container using the 'background' color from the theme
+                // Una superficie es un composable que permite definir el color de fondo de la app
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
                     Greeting("Android")
                 }

@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import dev.joseluis.mymoviescompose.ui.theme.MyMoviesComposeTheme
 
 // Clase principal de la app --> Actividad
@@ -27,7 +28,7 @@ class MainActivity : ComponentActivity() {
             MyMoviesComposeTheme {
                 // Una superficie es un composable que permite definir el color de fondo de la app
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                   MyMainScreen()
+                   MediaItem()
                 }
             }
         }
@@ -38,40 +39,28 @@ class MainActivity : ComponentActivity() {
 @Preview(
     showBackground = true,
     widthDp = 400,
-    heightDp = 200,
+    heightDp = 400,
     uiMode = UI_MODE_NIGHT_YES
 )
 @Composable
 fun DefaultPreview() {
     MyMoviesComposeTheme {
-        MyMainScreen()
+        MediaItem()
     }
 }
 
 @Composable
-fun MyMainScreen() {
-    // Row es un composable que permite definir una fila de elementos
-    Row(modifier = Modifier
-        .fillMaxSize()
-        .background(Color.LightGray),
-        verticalAlignment = Alignment.CenterVertically, // verticalAlignment es un parámetro que permite definir la alineación vertical de los elementos
-        horizontalArrangement = Arrangement.SpaceEvenly // HorizontalArrangement es un parámetro que permite definir la distribución de los elementos
-    ) {
-        Greeting(name = "Pepe", modifier = Modifier.background(Color.Blue))
-        Greeting(name = "Compose",
-            modifier = Modifier.background(Color.Red).weight(1f)
-        )
-        Greeting(name = "Jose",
-            modifier = Modifier.background(Color.Green).weight(2f)
-        )
+fun MediaItem() {
+    // Una columna
+    Column {
+        Box(
+            modifier = Modifier
+                .height(200.dp)
+                .fillMaxWidth()
+                .background(Color.Red)
+        ) {
+            // Aquí irán las dos images
+        }
+        Text(text = "Title 1")
     }
-
-
 }
-
-// Greting es un composable que permite definir un texto
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(text = "Hello $name!", modifier = modifier)
-}
-

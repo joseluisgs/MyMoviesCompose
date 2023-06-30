@@ -8,9 +8,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -74,24 +74,21 @@ fun DefaultPreview() {
 
 @Composable
 fun MediaList() {
-    LazyRow(
-        contentPadding = PaddingValues(4.dp), // Padding entre el contenido y el borde
-        horizontalArrangement = Arrangement.spacedBy(4.dp), // Espacio entre los items
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(150.dp), // Variables  // GridCells.Fixed(2), // Celdas fijas
+        contentPadding = PaddingValues(2.dp),
     ) {
         items(getMediaItems()) { item ->
-            MediaListItem(item)
+            MediaListItem(item = item, modifier = Modifier.padding(2.dp))
         }
     }
 }
 
 
 @Composable
-fun MediaListItem(item: MediaItem) {
+fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
     // Una columna
-    Column(
-        modifier = Modifier.width(200.dp)
-
-    ) {
+    Column(modifier = modifier){
         Box(modifier = Modifier
             .height(200.dp)
         ) {

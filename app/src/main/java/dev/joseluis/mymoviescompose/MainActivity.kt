@@ -1,5 +1,6 @@
 package dev.joseluis.mymoviescompose
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,7 +14,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayCircleOutline
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -22,7 +23,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
             MyMoviesComposeTheme {
                 // Una superficie es un composable que permite definir el color de fondo de la app
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                   StateSample()
+                    AppBar()
                 }
             }
         }
@@ -69,9 +69,32 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     MyMoviesComposeTheme {
-        StateSample()
+        AppBar()
     }
 }
+
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
+@Composable
+fun AppBar() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(text = stringResource(id = R.string.app_name)) },
+                actions = {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(Icons.Filled.Search, contentDescription = "Buscar")
+                    }
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(Icons.Filled.Share, contentDescription = "Compartir")
+                    }
+                }
+            )
+        }
+    ) { padding ->
+        MediaList(modifier = Modifier.padding(padding))
+    }
+}
+
 
 @Composable
 fun StateSample() {
@@ -109,10 +132,11 @@ fun StateSample() {
 }
 
 @Composable
-fun MediaList() {
+fun MediaList(modifier: Modifier = Modifier) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(150.dp), // Variables  // GridCells.Fixed(2), // Celdas fijas
         contentPadding = PaddingValues(2.dp),
+        modifier = modifier
     ) {
         items(getMediaItems()) { item ->
             MediaListItem(item = item, modifier = Modifier.padding(2.dp))
@@ -124,13 +148,15 @@ fun MediaList() {
 @Composable
 fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
     // Una columna
-    Column(modifier = modifier){
-        Box(modifier = Modifier
-            .height(200.dp)
+    Column(modifier = modifier) {
+        Box(
+            modifier = Modifier
+                .height(200.dp)
         ) {
             // Aquí irán las dos images
             // Imagen con Coil
-            AsyncImage(model = item.thumb, contentDescription = "Image 1",
+            AsyncImage(
+                model = item.thumb, contentDescription = "Image 1",
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
             )
@@ -163,7 +189,8 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
                 .background(MaterialTheme.colors.secondary)
                 .padding(16.dp)
         ) {
-            Text(text = item.title,
+            Text(
+                text = item.title,
                 fontSize = MaterialTheme.typography.h6.fontSize,
                 fontWeight = MaterialTheme.typography.h6.fontWeight,
             )
@@ -183,9 +210,11 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
 @Composable
 fun ButtonText(modifier: Modifier = Modifier) {
     // Cuidado con el orden!!!
-    Box(modifier = Modifier
-        .fillMaxSize(),
-        contentAlignment = Alignment.Center) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
         Text(text = stringResource(id = R.string.app_name), // Para acceder a los recursos
             color = Color.Red,
             fontSize = 25.sp, // Para las fuentes se usa sp

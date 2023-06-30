@@ -15,21 +15,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import dev.joseluis.mymoviescompose.R
 import dev.joseluis.mymoviescompose.models.MediaItem
 import dev.joseluis.mymoviescompose.models.getMediaItems
 
 @Composable
 fun MediaList(modifier: Modifier = Modifier) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(150.dp), // Variables  // GridCells.Fixed(2), // Celdas fijas
-        contentPadding = PaddingValues(2.dp),
+        columns = GridCells.Adaptive(dimensionResource(id = R.dimen.cell_min_width)), // Variables  // GridCells.Fixed(2), // Celdas fijas
+        contentPadding = PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)),
         modifier = modifier
     ) {
         items(getMediaItems()) { item ->
-            MediaListItem(item = item, modifier = Modifier.padding(2.dp))
+            MediaListItem(item = item, modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_xsmall)))
         }
     }
 }
@@ -40,7 +41,7 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         Box(
             modifier = Modifier
-                .height(200.dp)
+                .height(dimensionResource(id = R.dimen.cell_thumb_height))
         ) {
             // Aquí irán las dos images
             // Imagen con Coil
@@ -56,27 +57,19 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
                     contentDescription = "Play",
                     tint = Color.White.copy(alpha = 0.6f),
                     modifier = Modifier
-                        .size(120.dp)
+                        .size(dimensionResource(id = R.dimen.cell_play_icon_size))
                         //.clip(RoundedCornerShape(92.dp))
                         //.background(Color.Black.copy(alpha = 0.5f))
                         .align(Alignment.Center)
                 )
             }
-            // Iconos desde recursos
-            /*Icon(painter = painterResource(id = R.drawable.ic_launcher_foreground), contentDescription = "Play", tint = Color.White,
-                modifier = Modifier
-                    .size(120.dp)
-                    .clip(RoundedCornerShape(92.dp))
-                    .background(Color.Black.copy(alpha = 0.5f))
-                    .align(Alignment.Center)
-            )*/
         }
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colors.secondary)
-                .padding(16.dp)
+                .padding(dimensionResource(id = R.dimen.padding_medium))
         ) {
             Text(
                 text = item.title,

@@ -11,19 +11,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayCircleOutline
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -31,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
             MyMoviesComposeTheme {
                 // Una superficie es un composable que permite definir el color de fondo de la app
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                   MediaList()
+                   StateSample()
                 }
             }
         }
@@ -63,12 +63,48 @@ class MainActivity : ComponentActivity() {
     showBackground = true,
     widthDp = 400,
     heightDp = 400,
-    uiMode = UI_MODE_NIGHT_YES
+    uiMode = UI_MODE_NIGHT_YES,
+    device = Devices.PIXEL_4
 )
 @Composable
 fun DefaultPreview() {
     MyMoviesComposeTheme {
-        MediaList()
+        StateSample()
+    }
+}
+
+@Composable
+fun StateSample() {
+    // O by rememberSaveable salvará el estado de la variable en caso de que la actividad se destruya (rotación de pantalla)
+    // o by remember salva el estado, pero si la actividad (o rota la pantalla) se destruye, se pierde el estado
+    var text by rememberSaveable { mutableStateOf("") }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        TextField(
+            value = text,
+            onValueChange = { text = it },
+            modifier = Modifier.fillMaxWidth()
+        )
+        Text(
+            text = text,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.LightGray)
+                .padding(8.dp),
+            textAlign = TextAlign.Center
+        )
+        Button(
+            onClick = { text = "" },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = text.isNotEmpty()
+        ) {
+            Text(text = "Clear")
+        }
     }
 }
 

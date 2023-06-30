@@ -9,6 +9,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -73,9 +74,9 @@ fun DefaultPreview() {
 
 @Composable
 fun MediaList() {
-    LazyColumn(
+    LazyRow(
         contentPadding = PaddingValues(4.dp), // Padding entre el contenido y el borde
-        verticalArrangement = Arrangement.spacedBy(4.dp), // Espacio entre los items
+        horizontalArrangement = Arrangement.spacedBy(4.dp), // Espacio entre los items
     ) {
         items(getMediaItems()) { item ->
             MediaListItem(item)
@@ -87,12 +88,12 @@ fun MediaList() {
 @Composable
 fun MediaListItem(item: MediaItem) {
     // Una columna
-    Column {
-        Box(
-            modifier = Modifier
-                .height(200.dp)
-                .fillMaxWidth()
-                .background(Color.LightGray)
+    Column(
+        modifier = Modifier.width(200.dp)
+
+    ) {
+        Box(modifier = Modifier
+            .height(200.dp)
         ) {
             // Aquí irán las dos images
             // Imagen con Coil

@@ -1,4 +1,4 @@
-package dev.joseluis.mymoviescompose.ui.theme
+package dev.joseluis.mymoviescompose.views.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

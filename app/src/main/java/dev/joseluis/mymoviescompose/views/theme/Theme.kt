@@ -1,4 +1,4 @@
-package dev.joseluis.mymoviescompose.ui.theme
+package dev.joseluis.mymoviescompose.views.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

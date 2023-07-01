@@ -2,6 +2,7 @@ package dev.joseluis.mymoviescompose.navigation
 
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import dev.joseluis.mymoviescompose.models.MediaItem
 
 // Clase base principal para definir las rutas de la app
 sealed class NavItem(
@@ -10,7 +11,7 @@ sealed class NavItem(
 ) {
     object Main : NavItem("main") // Ruta principal
     object Detail : NavItem("detail", listOf(NavArg.MediaId)) {
-        fun createRoute(mediaId: Int) = "$baseRoute/$mediaId"
+        fun createRoute(mediaItem: MediaItem) = "$baseRoute/${mediaItem.id}"
     }
 
     val route = run {

@@ -1,13 +1,13 @@
 package dev.joseluis.mymoviescompose
 
-import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import dev.joseluis.mymoviescompose.views.app.MyMoviesApp
+import dev.joseluis.mymoviescompose.views.detail.DetailScreen
 import dev.joseluis.mymoviescompose.views.main.MainScreen
 
 // Clase principal de la app --> Actividad
@@ -19,8 +19,19 @@ class MainActivity : ComponentActivity() {
         setContent {
             // MyMoviesApp es un composable que permite definir la estructura de la app
             MyMoviesApp {
-                // MainScreen es un composable que permite definir el contenido de la actividad
-                MainScreen()
+                // Para navegar entre pantallas
+                val navController = rememberNavController()
+                // Se definen las pantallas y sus rutas
+                NavHost(navController = navController, startDestination = "main") {
+                    // Cada pantalla es un composable
+                    composable("main") {
+                        // MainScreen es un composable que permite definir el contenido de la actividad
+                        MainScreen(navController)
+                    }
+                    composable("detail") {
+                        DetailScreen()
+                    }
+                }
             }
         }
     }
@@ -30,6 +41,7 @@ class MainActivity : ComponentActivity() {
 
 
 // Las funciones con Preview no aceptan parámetros
+/*
 @Preview(
     showBackground = true,
     widthDp = 400,
@@ -40,9 +52,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     MyMoviesApp {
-        MainScreen()
+        MainScreen(navController)
     }
 }
+*/
 
 
 /*@Composable

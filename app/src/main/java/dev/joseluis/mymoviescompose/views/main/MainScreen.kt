@@ -4,19 +4,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavHostController) {
     Scaffold(
         topBar = { MainAppBar() }
     ) { padding ->
-        MediaList(modifier = Modifier.padding(padding))
+        MediaList(navController = navController, modifier = Modifier.padding(padding))
     }
 }
 
+/*
 @Preview
 @Composable
 fun MainScreenPreview() {
-    MainScreen()
-}
+    MainScreen(navController)
+}*/

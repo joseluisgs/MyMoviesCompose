@@ -12,14 +12,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.navigation.NavHostController
 import dev.joseluis.mymoviescompose.R
 import dev.joseluis.mymoviescompose.models.MediaItem
 import dev.joseluis.mymoviescompose.models.getMediaItems
 import dev.joseluis.mymoviescompose.views.shared.Thumb
 
 @Composable
-fun MediaList(navController: NavHostController, modifier: Modifier = Modifier) {
+fun MediaList(
+    onMediaClick: (MediaItem) -> Unit, // Devuelve un MediaItem
+    modifier: Modifier = Modifier,
+) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(dimensionResource(id = R.dimen.cell_min_width)), // Variables  // GridCells.Fixed(2), // Celdas fijas
         contentPadding = PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)),
@@ -28,7 +30,7 @@ fun MediaList(navController: NavHostController, modifier: Modifier = Modifier) {
         items(getMediaItems()) { item ->
             MediaListItem(
                 item = item,
-                navController = navController,
+                onClick = { onMediaClick(item) },
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_xsmall))
             )
         }
@@ -36,11 +38,16 @@ fun MediaList(navController: NavHostController, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun MediaListItem(item: MediaItem, navController: NavHostController, modifier: Modifier = Modifier) {
+fun MediaListItem(
+    item: MediaItem,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     // Una columna
     Column(
         modifier = modifier
-            .clickable { navController.navigate("detail/${item.id}") }) {
+            .clickable(onClick = onClick)
+    ) {
         Thumb(item)
         Box(
             contentAlignment = Alignment.Center,

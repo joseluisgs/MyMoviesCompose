@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import dev.joseluis.mymoviescompose.models.MediaItem
 
 @Composable
@@ -18,9 +19,8 @@ fun MainScreen(onMediaClick: (MediaItem) -> Unit) {
     }
 }
 
-/*
 @Preview
 @Composable
 fun MainScreenPreview() {
-    MainScreen(navController)
-}*/
+    MainScreen(onMediaClick = {})
+}

@@ -1,8 +1,12 @@
 package dev.joseluis.mymoviescompose
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Devices
+import androidx.compose.ui.tooling.preview.Preview
 import dev.joseluis.mymoviescompose.navigation.Navigation
 import dev.joseluis.mymoviescompose.views.app.MyMoviesApp
 
@@ -26,7 +30,6 @@ class MainActivity : ComponentActivity() {
 
 
 // Las funciones con Preview no aceptan parámetros
-/*
 @Preview(
     showBackground = true,
     widthDp = 400,
@@ -37,10 +40,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun DefaultPreview() {
     MyMoviesApp {
-        MainScreen(navController)
+        Navigation()
     }
 }
-*/
 
 
 /*@Composable

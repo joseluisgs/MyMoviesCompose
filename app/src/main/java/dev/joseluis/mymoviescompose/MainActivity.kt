@@ -3,9 +3,11 @@ package dev.joseluis.mymoviescompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import dev.joseluis.mymoviescompose.views.app.MyMoviesApp
 import dev.joseluis.mymoviescompose.views.detail.DetailScreen
 import dev.joseluis.mymoviescompose.views.main.MainScreen
@@ -28,8 +30,20 @@ class MainActivity : ComponentActivity() {
                         // MainScreen es un composable que permite definir el contenido de la actividad
                         MainScreen(navController)
                     }
-                    composable("detail") {
-                        DetailScreen()
+                    // Fijamos los parámetros de la ruta
+                    composable(
+                        route = "detail/{movieId}",
+                        // Para pasar parámetros entre pantallas
+                        arguments = listOf(
+                            // El nombre del parámetro debe coincidir con el nombre del parámetro de la ruta
+                            navArgument("movieId") { type = NavType.IntType }
+                        )
+                    ) {
+                        // DetailScreen es un composable que permite definir el contenido de la actividad
+                        // it.arguments?.getInt("movieId") --> Recuperamos el parámetro de la ruta
+                        DetailScreen(
+                            movieId = requireNotNull(it.arguments?.getInt("movieId")) { "movieId is null" }
+                        )
                     }
                 }
             }

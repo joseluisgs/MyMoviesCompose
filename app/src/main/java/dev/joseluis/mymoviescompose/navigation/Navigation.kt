@@ -37,7 +37,8 @@ fun Navigation() {
             // DetailScreen es un composable que permite definir el contenido de la actividad
             // it.arguments?.getInt("movieId") --> Recuperamos el parámetro de la ruta
             DetailScreen(
-                movieId = requireNotNull(it.arguments?.getInt(NavArg.MediaId.key)) { "movieId is null" }
+                movieId = requireNotNull(it.arguments?.getInt(NavArg.MediaId.key)) { "movieId is null" },
+                onUpClick = { navController.popBackStack() }
             )
         }
     }

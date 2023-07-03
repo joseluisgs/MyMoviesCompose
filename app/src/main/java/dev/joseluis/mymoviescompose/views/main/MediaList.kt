@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -44,24 +45,32 @@ fun MediaListItem(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    // Una columna
-    Column(
+    // Card
+    Card(
         modifier = modifier
-            .clickable(onClick = onClick)
+            .clickable(onClick = onClick),
+        //elevation = 0.dp,
+        //shape = RoundedCornerShape(dimensionResource(id = R.dimen.radius_small))
+        // border = BorderStroke(1.dp, Color.LightGray),
+        // backgroundColor = MaterialTheme.colors.primary,
+        // contentColor = MaterialTheme.colors.secondary
     ) {
-        Thumb(item)
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colors.secondary)
-                .padding(dimensionResource(id = R.dimen.padding_medium))
-        ) {
-            Text(
-                text = item.title,
-                fontSize = MaterialTheme.typography.h6.fontSize,
-                fontWeight = MaterialTheme.typography.h6.fontWeight,
-            )
+        // Una columna
+        Column {
+            Thumb(item)
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colors.secondary)
+                    .padding(dimensionResource(id = R.dimen.padding_medium))
+            ) {
+                Text(
+                    text = item.title,
+                    fontSize = MaterialTheme.typography.h6.fontSize,
+                    fontWeight = MaterialTheme.typography.h6.fontWeight,
+                )
+            }
         }
     }
 }

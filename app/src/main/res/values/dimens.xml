@@ -5,4 +5,6 @@
     <dimen name="cell_thumb_height">200dp</dimen>
     <dimen name="cell_play_icon_size">100dp</dimen>
     <dimen name="padding_medium">16dp</dimen>
+    <dimen name="elevation_small">8dp</dimen>
+    <dimen name="radius_small">8dp</dimen>
 </resources>

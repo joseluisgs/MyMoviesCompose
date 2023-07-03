@@ -6,6 +6,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
+// Aquí vive la confiiguración de temas de la app
 
 // Mis colores personalizados para la app
 
@@ -33,6 +34,7 @@ private val LightColorPalette = lightColors(
 )
 
 // Composable que define los colores de la app
+// Si no se especifica el tema, se usa el tema del sistema
 @Composable
 fun MyMoviesComposeTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {

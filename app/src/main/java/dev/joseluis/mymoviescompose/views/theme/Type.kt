@@ -14,7 +14,14 @@ val Typography = Typography(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
-    )
+    ),
+    // Cambiar el tamaño de la fuente de los títulos
+    /*h6 = TextStyle(
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.ExtraBold,
+        fontStyle = FontStyle.Italic,
+        fontSize = 26.sp
+    ),*/
     /* Other default text styles to override
     button = TextStyle(
         fontFamily = FontFamily.Default,

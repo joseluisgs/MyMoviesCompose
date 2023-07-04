@@ -63,7 +63,7 @@ Formación Compose Expert por [DevExperto Antonio Leiva ](https://devexperto.com
 
 ## Licencia
 
-Todo el código es original y pertenece a [Kotlin Expert](https://kotlinexpert.com/) salvo modificaciones y ampliaciones
+Todo el código es original y pertenece a [Compose Expert](hhttps://compose.expert/masterclass/) salvo modificaciones y ampliaciones
 personales. Si tienes dudas, no dudes en cursarla, no te arrepentirás.
 
 Este repositorio y todo su contenido está licenciado bajo licencia **Creative Commons**, si desea saber más, vea
